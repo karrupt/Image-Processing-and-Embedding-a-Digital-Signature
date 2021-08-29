@@ -6,7 +6,8 @@ import os
 class digital_signature:
 	def __init__(self):
 		self.source_image = ""
-		self.destination_img = "images\decoded.png"
+		# whenever something is embedded it will be embedded in the below file
+		self.destination_img = "images\encoded.png"
 		self.SIGNATURE_LENGTH = 100
 
 	# 104---> [011,010,00]                #  this function takes the number say 104 and by using bitwise operator on
@@ -27,11 +28,12 @@ class digital_signature:
 
 # Concept of Inheritance
 class Embed(digital_signature):
+
 	def __init__(self, src_img):
 		digital_signature.__init__(self )
 		self.source_image = src_img
 
-	def embed(self, sign):         #this function the three arguments as -result image, source image and signature- respectively
+	def embed(self, sign):         #this function takes signature
 		image = cv2.imread(self.source_image, cv2.IMREAD_COLOR)
 		if image is None:
 			print(self.source_image, 'not found')
@@ -77,14 +79,13 @@ class Extract(digital_signature):
 		return sign.strip('*')
 
 def main():
-	choice = int(input("1-> Embed Message: '\n'2-> Extract Message: "))
-	try:
-		src_img = input("Enter the source Image ")
-	except:
-		print(" File does not exit , Wrong Path: ")
-
+	src_img = input("Enter the source Image ")
+	if os.path.exists(src_img) == False:
+		print(src_img + "file does not exit , Wrong Path: ")
+		return
+	choice = int(input("1-> Embed Message \n2-> Extract Message \nYour Choice: "))
 	if choice == 1:
-		message = input(" Enter Your Message(Max len = 100 ")
+		message = input(" Enter Your Message(Max len = 100): ")
 		if len(message) <= 100:
 			Emb = Embed(src_img)
 			Emb.embed(message)
@@ -100,27 +101,6 @@ def main():
 		return
 
 main()
-# _____________________________________________________________________________________________________________________________________________________________________________________
-
-
-
-# use of the functions used in the above program.
-
-# cv2.imread() is used to load an image in memory (as a 3d array).
-# It takes 2 parameters:
-# 1) srcFile: image to load
-# 2) flag: approach to build the memory image.
-# In our case we used cv2.IMREAD_COLOR that instructs
-# reading the image as color image.
-# By this the image gets 3rd dimension that stores BGR bands per pixel.
-#
-#
-# cv2.imwrite() is used to write an image on disk.
-# It takes 2 parameters:
-# 1) targetFile: file to save the image as. Keep it .png to avoid lossy compression (more on this ahead)
-# 2) image : The data structure (3d or 2d array) of the image.
-# ____________________________________________________________________________________________________________________________________________________________________________________
-
 
 
 
