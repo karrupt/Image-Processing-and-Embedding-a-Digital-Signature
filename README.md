@@ -31,9 +31,9 @@ ___
 There are other functions like converting **Bits list** to a **Byte** and **vice-versa**.
 Those are best explained with the following diagram.
 
-![bitwise operator](images\bitwise_operators.jpeg "how bitwise operators works")
+![bitwise operator](https://github.com/proacher/Image-Processing-and-Embedding-a-Digital-Signature/blob/main/images/bitwise_operators.jpeg "how bitwise operators works")
 ___
 
 ### How data is changing:
 
-![Data Changing](images\data_changing.jpeg "visually no change but we have embedded what we wanted") 
+![Data Changing](https://github.com/proacher/Image-Processing-and-Embedding-a-Digital-Signature/blob/main/images/data_changing.jpeg "visually no change but we have embedded what we wanted") 
